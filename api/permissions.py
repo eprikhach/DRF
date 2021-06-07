@@ -1,10 +1,18 @@
-from loguru import logger
 from rest_framework import permissions
 from .models import Course, HomeworkSolution
 
 
 class IsTeacher(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Returns True if user is a teacher.
+
+        :param request: request
+        :param view: view
+        :return: boolean
+        """
+
         user = request.user
 
         if user.is_staff:
@@ -17,7 +25,16 @@ class IsTeacher(permissions.BasePermission):
 
 
 class IsTeacherMember(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Returns True if user is in teacher field.
+
+        :param request: request
+        :param view: view
+        :return: boolean
+        """
+
         if not request.user.is_authenticated:
             return False
 
@@ -39,7 +56,16 @@ class IsTeacherMember(permissions.BasePermission):
 
 
 class IsStudentMember(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Return true if user is in students field.
+
+        :param request: request
+        :param view: view
+        :return: boolean
+        """
+
         if not request.user.is_authenticated:
             return False
         user = request.user
@@ -57,7 +83,16 @@ class IsStudentMember(permissions.BasePermission):
 
 
 class IsStudentSolution(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Returns True if solution was created by this user.
+
+        :param request: request
+        :param view: view
+        :return: boolean
+        """
+
         if request.user.is_staff:
             return True
 
@@ -70,7 +105,16 @@ class IsStudentSolution(permissions.BasePermission):
 
 
 class IsTeacherMemberOrReadOnly(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Returns True if user is in teachers field or method is safe.
+
+        :param request: request
+        :param view: view
+        :return: boolean
+        """
+
         user = request.user
 
         if user.is_staff:
@@ -88,7 +132,15 @@ class IsTeacherMemberOrReadOnly(permissions.BasePermission):
 
 
 class IsSelfSolutionOrTeacherMember(permissions.BasePermission):
+    """Custom permission class."""
+
     def has_permission(self, request, view):
+        """Returns True if user is solution owner or in teachers field.
+
+        :param request:
+        :param view:
+        :return:
+        """
         user = request.user
         view = view.kwargs
 
