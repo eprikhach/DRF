@@ -89,6 +89,7 @@ webencodings = "0.5.1"
 wrapt = "1.12.1"
 psycopg2-binary = "^2.8.6"
 pytest-django = "^4.4.0"
+pytest-xdist = "^2.2.1"
 
 [tool.poetry.dev-dependencies]
 

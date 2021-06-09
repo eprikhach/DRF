@@ -40,7 +40,7 @@ class TeacherCourseList(generics.ListAPIView):
 
     def get_queryset(self):
         return api_models.Course.objects.filter(
-            Teachers__pk=self.request.user.id)
+            teachers__pk=self.request.user.id)
 
 
 class StudentCourseList(generics.ListAPIView):

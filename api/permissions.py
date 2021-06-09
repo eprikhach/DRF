@@ -46,11 +46,11 @@ class IsTeacherMember(permissions.BasePermission):
         if view.get('course_id'):
             course_id = view['course_id']
             return Course.objects.filter(pk=course_id,
-                                         Teachers__id=user.pk)
+                                         teachers__id=user.pk)
         elif view.get('pk'):
             course_id = view['pk']
             return Course.objects.filter(pk=course_id,
-                                         Teachers__id=user.pk)
+                                         teachers__id=user.pk)
 
         return False
 
@@ -77,7 +77,7 @@ class IsStudentMember(permissions.BasePermission):
         if view.get('course_id'):
             course_id = view['course_id']
             return Course.objects.filter(pk=course_id,
-                                         Students__id=user.pk)
+                                         students__id=user.pk)
 
         return False
 
@@ -98,7 +98,7 @@ class IsStudentSolution(permissions.BasePermission):
 
         if view.kwargs.get('pk'):
             return HomeworkSolution.objects.filter(
-                Student=request.user.pk,
+                student=request.user.pk,
                 id=view.kwargs['pk'])
 
         return False
@@ -126,7 +126,7 @@ class IsTeacherMemberOrReadOnly(permissions.BasePermission):
         if view.get('course_id'):
             course_id = view['course_id']
             return Course.objects.filter(pk=course_id,
-                                         Teachers__id=user.pk)
+                                         teachers__id=user.pk)
 
         return False
 
@@ -150,13 +150,13 @@ class IsSelfSolutionOrTeacherMember(permissions.BasePermission):
         if view.get('solution_id'):
             course_id = view['course_id']
 
-            if HomeworkSolution.objects.filter(Student=user.pk,
+            if HomeworkSolution.objects.filter(student=user.pk,
                                                id=view['solution_id']):
 
                 return True
 
             elif Course.objects.filter(pk=course_id,
-                                       Teachers__id=user.pk):
+                                       teachers__id=user.pk):
 
                 return True
 

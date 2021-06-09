@@ -1,4 +1,12 @@
 [[package]]
+name = "apipkg"
+version = "1.5"
+description = "apipkg: namespace control and lazy-import mechanism"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
 name = "appdirs"
 version = "1.4.4"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
@@ -330,6 +338,20 @@ uritemplate = ">=3.0.0"
 
 [package.extras]
 validation = ["swagger-spec-validator (>=2.1.0)"]
+
+[[package]]
+name = "execnet"
+version = "1.8.1"
+description = "execnet: rapid multi-Python deployment"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[package.dependencies]
+apipkg = ">=1.4"
+
+[package.extras]
+testing = ["pre-commit"]
 
 [[package]]
 name = "filelock"
@@ -756,6 +778,18 @@ python-versions = ">=3.6,<4.0"
 pytest = ">=3.0"
 
 [[package]]
+name = "pytest-forked"
+version = "1.3.0"
+description = "run tests in isolated forked subprocesses"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[package.dependencies]
+py = "*"
+pytest = ">=3.10"
+
+[[package]]
 name = "pytest-lambda"
 version = "1.2.4"
 description = "Define pytest fixtures with lambda functions."
@@ -766,6 +800,23 @@ python-versions = ">=3.6,<4.0"
 [package.dependencies]
 pytest = ">=3.6,<7"
 wrapt = ">=1.11.0,<2.0.0"
+
+[[package]]
+name = "pytest-xdist"
+version = "2.2.1"
+description = "pytest xdist plugin for distributed testing and loop-on-failing modes"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+execnet = ">=1.1"
+pytest = ">=6.0.0"
+pytest-forked = "*"
+
+[package.extras]
+psutil = ["psutil (>=3.0)"]
+testing = ["filelock"]
 
 [[package]]
 name = "python-dotenv"
@@ -1041,9 +1092,13 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.0"
-content-hash = "2e52d4f83d8ce7f66e304149454f607c4a06a53e34584bd981a4aba4d07320ea"
+content-hash = "33f33562e203ba84a9633cd8df87f37e48923768194f7e170028043b8832c79c"
 
 [metadata.files]
+apipkg = [
+    {file = "apipkg-1.5-py2.py3-none-any.whl", hash = "sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c"},
+    {file = "apipkg-1.5.tar.gz", hash = "sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6"},
+]
 appdirs = [
     {file = "appdirs-1.4.4-py2.py3-none-any.whl", hash = "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"},
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
@@ -1208,6 +1263,10 @@ docutils = [
 drf-yasg = [
     {file = "drf-yasg-1.20.0.tar.gz", hash = "sha256:d50f197c7f02545d0b736df88c6d5cf874f8fea2507ad85ad7de6ae5bf2d9e5a"},
     {file = "drf_yasg-1.20.0-py2.py3-none-any.whl", hash = "sha256:8b72e5b1875931a8d11af407be3a9a5ba8776541492947a0df5bafda6b7f8267"},
+]
+execnet = [
+    {file = "execnet-1.8.1-py2.py3-none-any.whl", hash = "sha256:e840ce25562e414ee5684864d510dbeeb0bce016bc89b22a6e5ce323b5e6552f"},
+    {file = "execnet-1.8.1.tar.gz", hash = "sha256:7e3c2cdb6389542a91e9855a9cc7545fbed679e96f8808bcbb1beb325345b189"},
 ]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
@@ -1483,9 +1542,17 @@ pytest-fixture-order = [
     {file = "pytest-fixture-order-0.1.3.tar.gz", hash = "sha256:dafa8840baf017548f9e82da7121c252bfe113941e63a88e85b60decaa2482c1"},
     {file = "pytest_fixture_order-0.1.3-py3-none-any.whl", hash = "sha256:5c2b7be9ae270d4ebe366967ce8551dd96a7c73c02149a008bb11387d99c6fb3"},
 ]
+pytest-forked = [
+    {file = "pytest-forked-1.3.0.tar.gz", hash = "sha256:6aa9ac7e00ad1a539c41bec6d21011332de671e938c7637378ec9710204e37ca"},
+    {file = "pytest_forked-1.3.0-py2.py3-none-any.whl", hash = "sha256:dc4147784048e70ef5d437951728825a131b81714b398d5d52f17c7c144d8815"},
+]
 pytest-lambda = [
     {file = "pytest-lambda-1.2.4.tar.gz", hash = "sha256:4d2982a6c81f7d1732ed0f2dc992f16d2e680e6f4f1ab9f2bf516b9ac4913c77"},
     {file = "pytest_lambda-1.2.4-py3-none-any.whl", hash = "sha256:105e862921e0e0e54f58044dad0c7e57d9eacee160aebc2a702eabb3c4b1c5ee"},
+]
+pytest-xdist = [
+    {file = "pytest-xdist-2.2.1.tar.gz", hash = "sha256:718887296892f92683f6a51f25a3ae584993b06f7076ce1e1fd482e59a8220a2"},
+    {file = "pytest_xdist-2.2.1-py3-none-any.whl", hash = "sha256:2447a1592ab41745955fb870ac7023026f20a5f0bfccf1b52a879bd193d46450"},
 ]
 python-dotenv = [
     {file = "python-dotenv-0.17.1.tar.gz", hash = "sha256:b1ae5e9643d5ed987fc57cc2583021e38db531946518130777734f9589b3141f"},

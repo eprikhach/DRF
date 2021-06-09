@@ -40,9 +40,11 @@ lectures_methods = [
     ]
 
 urlpatterns = [
-    path('courses/Teacher/', api_views.TeacherCourseList.as_view()),
+    path('courses/Teacher/', api_views.TeacherCourseList.as_view(),
+         name='TeacherCourseList'),
     path('courses/Student/', api_views.StudentCourseList.as_view()),
-    path('courses/create/', api_views.CourseCreate.as_view()),
+    path('courses/create/', api_views.CourseCreate.as_view(),
+         name='CreateCourse'),
     path('courses/<pk>/', api_views.CourseRUD.as_view()),
     path('courses/<course_id>/', include(lectures_methods))
     ]
