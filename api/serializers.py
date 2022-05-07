@@ -2,6 +2,17 @@ from rest_framework import serializers
 import api.models as api_models
 
 
+class UserSerializer(serializers.ModelSerializer):
+    """Class, which serializes the request object for working with create
+    operation on the ticket table."""
+
+    class Meta:
+        ref_name = 'Getting user'
+        model = api_models.User
+        fields = ['id', 'username']
+        read_only_fields = ('id',)
+
+
 class CourseSerializer(serializers.ModelSerializer):
     """Class, which serializes the request object for working with create
     operation on the course table."""

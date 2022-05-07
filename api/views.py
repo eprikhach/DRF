@@ -18,13 +18,23 @@ class UserActivationView(APIView):
 
     permission_classes = [AllowAny]
 
+    @staticmethod
     def get(request, uid, token):
         protocol = 'https://' if request.is_secure() else 'http://'
         web_url = protocol + request.get_host()
-        post_url = web_url + "/auth/users/activation/"
+        post_url = web_url + "/api/users/activation/"
         post_data = {'uid': uid, 'token': token}
         result = requests.post(post_url, data=post_data)
         return Response(result)
+
+
+class UsersList(generics.ListAPIView):
+    serializer_class = api_serializers.UserSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        user_data = api_models.User.objects.filter(username__icontains=username)
+        return user_data
 
 
 class TeacherCourseList(generics.ListAPIView):

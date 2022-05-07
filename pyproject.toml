@@ -5,7 +5,7 @@ description = "Online courses API."
 authors = ["Eugene Prikhach <eugeneprikhach@icloud.com>"]
 
 [tool.poetry.dependencies]
-python = "3.9.0"
+python = "3.9.7"
 appdirs = "1.4.4"
 asgiref = "3.3.4"
 attrs = "21.2.0"
@@ -53,7 +53,6 @@ pkginfo = "1.7.0"
 pluggy = "0.13.1"
 poetry = "1.1.6"
 poetry-core = "1.0.3"
-psycopg2 = "2.8.6"
 ptyprocess = "0.7.0"
 py = "1.10.0"
 pycparser = "2.20"
@@ -90,6 +89,7 @@ wrapt = "1.12.1"
 psycopg2-binary = "^2.8.6"
 pytest-django = "^4.4.0"
 pytest-xdist = "^2.2.1"
+django-cors-headers = "^3.11.0"
 
 [tool.poetry.dev-dependencies]
 

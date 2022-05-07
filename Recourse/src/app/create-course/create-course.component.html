@@ -1,0 +1,64 @@
+<div class="auth-wrapper">
+    <div class="img-container">
+        <img src="assets/img/Course_pic.jpg" class="img-border" alt="Snow" width=100%>
+        <label class="bottom-left">Make your own course</label>
+    </div>
+    <h3 class="h3 mb-3 font-weight-normal text-center">Ticket information</h3>
+    <div id="formContent">
+
+        <form id="form-ticket" class="form-ticket" [formGroup]="ticketForm" (ngSubmit)="createTicket()">
+
+            <div class="form-group">
+                <label>Subject</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        formControlName="subject"
+                        placeholder="Enter subject"
+                        required
+                />
+            </div>
+            <div class="form-group">
+                <label>Ticket status</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        formControlName="ticket_status"
+                        placeholder="Enter status"
+                        required
+                />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        formControlName="description"
+                        placeholder="Enter description"
+                        required
+                />
+            </div>
+            <div id="search-component">
+                <label for="search-box">User Search</label>
+                <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+
+                <ul class="search-result">
+                    <li *ngFor="let user of users$ | async">
+                        <a (click)="ticketService.createDiv(user)">
+                            {{user.username}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">create ticket</button>
+        </form>
+        <div class="user-container">
+            <div *ngFor="let user of ticketService.user_list" id="div{{user.id}}">
+                <label>{{user.username}}</label>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<p>create-course works!</p>

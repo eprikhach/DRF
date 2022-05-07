@@ -6,18 +6,16 @@ class User(AbstractUser):
     """
     Stores a user entries.
     """
+    student = "ST"
+    teacher = "TE"
 
-    user_status_type = (
-        ('S', 'Student'),
-        ('T', 'Teacher')
-    )
+    user_status_type = [(student, "Student"), (teacher, "Teacher")]
 
-    user_status = models.CharField(max_length=1,
+    user_status = models.CharField(max_length=2,
                                    choices=user_status_type,
                                    default='S')
 
     REQUIRED_FIELDS = ['password', 'email', 'user_status']
-    USERNAME_FIELD = 'username'
 
     def __str__(self):
         return self.username
