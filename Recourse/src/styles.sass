@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins')
+@import '../src/assets/sass/footer.sass'
+@import '../node_modules/font-awesome/css/font-awesome.min.css'
+@import '../node_modules/primeng/resources/primeng.min.css' // this is needed for the structural css
 
 /* BASIC
 
 //html
 //  background-color: #56baed
+.cdk-global-overlay-wrapper, .cdk-overlay-container
+  z-index: 10000 !important
 
 body
   font-family: "Poppins", sans-serif
@@ -32,13 +37,13 @@ label
   flex-direction: column
   justify-content: center
   width: 100%
-  min-height: 100%
   padding: 20px
 
 #formContent
   -webkit-border-radius: 10px 10px 10px 10px
   border-radius: 10px 10px 10px 10px
   background: #fff
+  margin-left: 2.5rem
   padding: 30px
   width: 90%
   max-width: 450px
@@ -68,6 +73,30 @@ label
 
 /* FORM TYPOGRAPHY
 
+select
+  &[id=Role]
+    background-color: #f6f6f6
+    color: #0d0d0d
+    padding: 15px 32px
+    text-align: center
+    text-decoration: none
+    display: inline-block
+    font-size: 16px
+    margin: 5px
+    width: 85%
+    border: 2px solid #f6f6f6
+    -webkit-transition: all 0.5s ease-in-out
+    -moz-transition: all 0.5s ease-in-out
+    -o-transition: all 0.5s ease-in-out
+    transition: all 0.5s ease-in-out
+    -webkit-border-radius: 5px 5px 5px 5px
+    border-radius: 5px 5px 5px 5px
+    -webkit-appearance: none
+    -moz-appearance: none
+    text-align: -webkit-center
+    flex-direction: column
+
+
 input
   &[type=button], &[type=submit], &[type=reset]
     background-color: #56baed
@@ -89,6 +118,10 @@ input
     -ms-transition: all 0.3s ease-in-out
     -o-transition: all 0.3s ease-in-out
     transition: all 0.3s ease-in-out
+    -webkit-appearance: none
+    -moz-appearance: none
+    text-align: -webkit-center
+    flex-direction: column
 
   &[type=button]:hover, &[type=submit]:hover, &[type=reset]:hover
     background-color: #39ace7
@@ -100,7 +133,7 @@ input
     -ms-transform: scale(0.95)
     transform: scale(0.95)
 
-  &[type=text]
+  &[type=text], &[type=password]
     background-color: #f6f6f6
     border: none
     color: #0d0d0d
@@ -124,7 +157,7 @@ input
       background-color: #fff
       border-bottom: 2px solid #5fbae9
 
-    &:placeholder
+    &::placeholder
       color: #cccccc
 
 /* ANIMATIONS
@@ -183,7 +216,7 @@ input
   to
     opacity: 1
 
-.fadeIn
+.fadeIn, .footer_area
   opacity: 0
   -webkit-animation: fadeIn ease-in 1
   -moz-animation: fadeIn ease-in 1
@@ -210,7 +243,7 @@ input
     -moz-animation-delay: 0.8s
     animation-delay: 0.8s
 
-  &.fourth
+  &.fourth, &.footer_area
     -webkit-animation-delay: 1s
     -moz-animation-delay: 1s
     animation-delay: 1s
@@ -249,3 +282,6 @@ input
   display: flex
   justify-content: center
   align-items: center
+
+/* Importing Bootstrap SCSS file. */
+@import '../node_modules/bootstrap/scss/bootstrap'

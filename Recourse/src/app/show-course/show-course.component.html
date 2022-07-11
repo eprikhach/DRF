@@ -1,0 +1,24 @@
+<div class="course-wrapper">
+
+    <div id="formContent" class="fadeIn second">
+        <form class="form-ticket">
+
+            <label>{{course_info.name}}</label>
+            <label>{{course_info.description}}</label>
+
+        </form>
+        <div id="formFooter" *ngIf="this.authService.isTeacher()">
+            <button class="btn btn-block btn-primary" (click)="updCourse(thisCourseId)">Edit</button>
+            <button class="btn btn-danger btn-primary" (click)="deleteCourse()">Delete</button>
+        </div>
+    </div>
+    <div class="create-lect">
+        <button class="btn btn-block btn-primary" (click)="createLecture(thisCourseId)">Create lecture</button>
+    </div>
+
+        <mat-card *NgFor="let lecture of lectureList">
+            <mat-card-title>{{lecture}}</mat-card-title>
+            <mat-card-subtitle>Start</mat-card-subtitle>
+        </mat-card>
+        <br>
+</div>

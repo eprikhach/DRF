@@ -36,7 +36,9 @@ lectures = [
     path('lectures/get/', api_views.LectureList.as_view()),
     path('lectures/create/', api_views.LectureCreate.as_view()),
     path('lectures/<pk>/', api_views.LectureRUD.as_view()),
-    path('lectures/<lecture_id>/', include(homework))
+    path('course_lectures/', api_views.CourseLecturesList.as_view()),
+    path('lectures/<lecture_id>/', include(homework)),
+
     ]
 
 courses = [

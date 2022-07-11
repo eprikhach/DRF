@@ -13,7 +13,7 @@ class User(AbstractUser):
 
     user_status = models.CharField(max_length=2,
                                    choices=user_status_type,
-                                   default='S')
+                                   default='ST')
 
     REQUIRED_FIELDS = ['password', 'email', 'user_status']
 

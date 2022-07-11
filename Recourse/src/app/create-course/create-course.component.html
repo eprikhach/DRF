@@ -1,64 +1,142 @@
-<div class="auth-wrapper">
-    <div class="img-container">
-        <img src="assets/img/Course_pic.jpg" class="img-border" alt="Snow" width=100%>
-        <label class="bottom-left">Make your own course</label>
-    </div>
-    <h3 class="h3 mb-3 font-weight-normal text-center">Ticket information</h3>
-    <div id="formContent">
-
-        <form id="form-ticket" class="form-ticket" [formGroup]="ticketForm" (ngSubmit)="createTicket()">
-
-            <div class="form-group">
-                <label>Subject</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        formControlName="subject"
-                        placeholder="Enter subject"
-                        required
-                />
-            </div>
-            <div class="form-group">
-                <label>Ticket status</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        formControlName="ticket_status"
-                        placeholder="Enter status"
-                        required
-                />
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        formControlName="description"
-                        placeholder="Enter description"
-                        required
-                />
-            </div>
-            <div id="search-component">
-                <label for="search-box">User Search</label>
-                <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
-
-                <ul class="search-result">
-                    <li *ngFor="let user of users$ | async">
-                        <a (click)="ticketService.createDiv(user)">
-                            {{user.username}}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <button type="submit" class="btn btn-block btn-primary">create ticket</button>
-        </form>
-        <div class="user-container">
-            <div *ngFor="let user of ticketService.user_list" id="div{{user.id}}">
-                <label>{{user.username}}</label>
-            </div>
-        </div>
-    </div>
-
-
+<div class="img-container">
+    <img src="assets/img/Course_pic.jpg" class="img-border" alt="Snow" width=100%>
+    <label class="bottom-left">Make your own course</label>
 </div>
-<p>create-course works!</p>
+<mat-stepper #stepper class="fadeIn second">
+  <mat-step [stepControl]="courseName" errorMessage="Name is required.">
+    <form [formGroup]="courseName">
+      <ng-template matStepLabel>Course name</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Course</mat-label>
+        <input matInput placeholder="Course name" formControlName="name" required>
+      </mat-form-field>
+      <div>
+        <p>Fill out the course name</p>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="courseDescribe" errorMessage="Address is required.">
+    <form [formGroup]="courseDescribe">
+      <ng-template matStepLabel>Description</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Describe</mat-label>
+        <input matInput placeholder="Few words about course" formControlName="description"
+               required>
+      </mat-form-field>
+      <div>
+        <p>Go to a different step to see the error state</p>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="submit" class="btn btn-block btn-primary" (click)="createCourse()">
+        CREATE COURSE</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+
+
+<!--<div class="course-wrapper">-->
+
+<!--    <div id="formDescription">-->
+<!--        <label class="active"> Course description </label>-->
+<!--        <form id="form-ticket" class="form-ticket" [formGroup]="ticketForm" (ngSubmit)="createTicket()">-->
+
+<!--            <div class="form-group">-->
+<!--                <input-->
+<!--                        type="text" id="firstInput"-->
+<!--                        class="form-control"-->
+<!--                        formControlName="subject"-->
+<!--                        placeholder="Enter subject"-->
+<!--                        required-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <input-->
+<!--                        type="text"-->
+<!--                        class="form-control"-->
+<!--                        formControlName="ticket_status"-->
+<!--                        placeholder="Enter status"-->
+<!--                        required-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <input-->
+<!--                        type="text"-->
+<!--                        class="form-control"-->
+<!--                        formControlName="description"-->
+<!--                        placeholder="Enter description"-->
+<!--                        required-->
+<!--                />-->
+<!--            </div>-->
+
+
+<!--        </form>-->
+<!--        <div id="formFooter">-->
+<!--            <button type="submit" class="btn btn-block btn-primary">CREATE COURSE</button>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--    <div id="formContent">-->
+<!--        <label class="active"> Users </label>-->
+<!--        <h4>Author: {{currentUser.username}}</h4>-->
+<!--        <div class="form-group">-->
+<!--            &lt;!&ndash;            <input #searchBox type="text" id="myInput" placeholder="Search for names.."&ndash;&gt;-->
+<!--            &lt;!&ndash;                   (input)="search(searchBox.value)"/>&ndash;&gt;-->
+<!--            <mat-form-field class="example-chip-list" appearance="fill">-->
+<!--                <mat-label>Add User...</mat-label>-->
+<!--                <mat-chip-list #chipList aria-label="Fruit selection">-->
+<!--                    <mat-chip-->
+<!--                            *ngFor="let fruit of fruits"-->
+<!--                            (removed)="remove(fruit)">-->
+<!--                        {{fruit}}-->
+<!--                        <button matChipRemove>-->
+<!--                            <mat-icon>cancel</mat-icon>-->
+<!--                        </button>-->
+<!--                    </mat-chip>-->
+<!--                    <input-->
+<!--                            placeholder="New fruit..."-->
+<!--                            #fruitInput-->
+<!--                            [formControl]="fruitCtrl"-->
+<!--                            [matAutocomplete]="auto"-->
+<!--                            [matChipInputFor]="chipList"-->
+<!--                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"-->
+<!--                            (matChipInputTokenEnd)="add($event)">-->
+<!--                </mat-chip-list>-->
+<!--                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">-->
+<!--                    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">-->
+<!--                        {{fruit}}-->
+<!--                    </mat-option>-->
+<!--                </mat-autocomplete>-->
+<!--            </mat-form-field>-->
+
+
+<!--            &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <nav>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <ul id="myUL">&ndash;&gt;-->
+
+<!--            &lt;!&ndash;                            <li *ngFor="let user of users$ | async">&ndash;&gt;-->
+<!--            &lt;!&ndash;                                <a (click)="ticketService.createDiv(user)" class="user-info">&ndash;&gt;-->
+<!--            &lt;!&ndash;                                    {{user.username}}&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </li>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--            &lt;!&ndash;        </nav>&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div class="user-container">&ndash;&gt;-->
+<!--            &lt;!&ndash;            <div *ngFor="let user of ticketService.user_list" id="div{{user.id}}">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <label>{{user.username}}</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+<!--</div>-->

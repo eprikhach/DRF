@@ -1,0 +1,17 @@
+<div class="fadeIn second">
+
+    <div class="title-block">
+        <label class="fadeIn second">Your courses</label>
+
+    </div>
+
+    <div class="card-container">
+        <hr width="50%" size="5" color="#dddddd"/>
+        <div class="card" *ngFor="let course of courseList">
+            <div class="card-body" (click)="this.getCourse(course.id)">
+                <h5 class="card-title">{{course.name}}</h5>
+                <p class="card-text">{{course.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

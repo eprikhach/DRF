@@ -3,4 +3,12 @@
   word-wrap: break-word;
 }
 
+body {
+  max-height: 40vh;
+}
+
+html {
+  max-height: 40vh;
+}
+
 /*# sourceMappingURL=user-profile.component.css.map */

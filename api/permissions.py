@@ -18,7 +18,7 @@ class IsTeacher(permissions.BasePermission):
         if user.is_staff:
             return True
 
-        if user.is_authenticated and user.user_status == 'T':
+        if user.is_authenticated and user.user_status == 'TE':
             return True
 
         return False

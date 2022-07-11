@@ -1,0 +1,94 @@
+.ngb-carousel {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin: 1.5rem 4rem 4rem 4rem;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+.ngb-carousel label {
+  margin-top: 1.5rem;
+  display: block;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.img-border {
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.carousel-content {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  background: mediumorchid;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 20px;
+  z-index: 20;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  margin: 4rem 1.5rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.card-container hr {
+  margin: 1.5rem 35rem 2.5rem 0rem;
+}
+.card-container .card {
+  background: #5fbae9;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  width: 18rem;
+  box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.5);
+  height: 15rem;
+  border: 0 solid;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+}
+.card-container .card:nth-of-type(1) {
+  background: linear-gradient(#1fe4f5, #3fbafe);
+}
+.card-container .card:nth-of-type(2) {
+  background: linear-gradient(#fbc1cc, #fa99b2);
+}
+.card-container .card:nth-of-type(3) {
+  background: linear-gradient(#76b2fe, #b69efe);
+}
+.card-container .card:nth-of-type(4) {
+  background: linear-gradient(#60efbc, #58d5c9);
+}
+.card-container .card:hover {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  width: 19rem;
+  height: 16rem;
+  color: aliceblue;
+}
+
+.title-block {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+}
+.title-block label {
+  text-transform: uppercase;
+  font-size: 3rem;
+  color: black;
+  margin-top: 3.5rem;
+  margin-left: 4rem;
+}
+
+/*# sourceMappingURL=own-course-list.component.css.map */

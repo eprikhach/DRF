@@ -18,8 +18,6 @@ export class UserProfileComponent implements OnInit {
     ) {
         this.authService.getUserProfile().subscribe((res: any) => {
             this.currentUser = res;
-            console.log(this.currentUser)
-            console.log(authService)
         });
     }
 

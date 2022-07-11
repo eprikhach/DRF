@@ -1,0 +1,51 @@
+<div class="img-container">
+    <img src="assets/img/Course_pic.jpg" class="img-border" alt="Snow" width=100%>
+    <label class="bottom-left">Make your lecture</label>
+</div>
+<mat-stepper #stepper class="fadeIn second">
+    <mat-step [stepControl]="lectureName" errorMessage="Theme is required.">
+        <form [formGroup]="lectureName">
+            <ng-template matStepLabel>Lecture theme</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Lecture</mat-label>
+                <input matInput placeholder="Lecture theme" formControlName="theme" required>
+            </mat-form-field>
+            <div>
+                <p>Fill out the lecture theme</p>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="lectureFile" errorMessage="File is required">
+        <form [formGroup]="lectureFile">
+            <ng-template matStepLabel>Description</ng-template>
+            <input type="file" class="file-input"
+                   (change)="onFileSelected($event)" #fileUpload>
+
+            <div class="file-upload">
+
+                {{fileName || "No file uploaded yet."}}
+
+                <button mat-mini-fab color="primary" class="upload-btn"
+                        (click)="fileUpload.click()">
+                    <mat-icon>attach_file</mat-icon>
+                </button>
+            </div>
+            <div>
+                <p>Go to a different step to see the error state</p>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button type="submit" class="btn btn-block btn-primary" (click)="editLecture()">
+                CREATE LECTURE
+            </button>
+        </div>
+    </mat-step>
+</mat-stepper>

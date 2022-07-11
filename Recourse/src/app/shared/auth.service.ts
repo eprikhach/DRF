@@ -38,7 +38,7 @@ export class AuthService {
                 localStorage.setItem('access_token', res['access']);
                 this.getUserProfile().subscribe((res) => {
                     this.currentUser = res;
-                    this.router.navigate(['user-profile/']);
+                    this.router.navigate(['home/']);
                 });
             });
     }
@@ -66,6 +66,18 @@ export class AuthService {
             map((res) => {
                 return res || {};
             }),
+            catchError(this.handleError)
+        );
+    }
+
+    isTeacher(){
+        let api = `${this.endpoint}/users/me/`;
+        console.log(api)
+        return this.http.get(api, {headers: this.headers}).pipe(
+            map((res) => {
+                return res || {};
+            }),
+
             catchError(this.handleError)
         );
     }

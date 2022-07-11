@@ -1,0 +1,43 @@
+<div class="img-container">
+    <img src="assets/img/Course_pic.jpg" class="img-border" alt="Snow" width=100%>
+    <label class="bottom-left">Update your course</label>
+</div>
+<mat-stepper #stepper class="fadeIn second">
+  <mat-step [stepControl]="courseName" errorMessage="Name is required.">
+    <form [formGroup]="courseName">
+      <ng-template matStepLabel>Course name</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Course</mat-label>
+        <input matInput placeholder="Course name" formControlName="name" required>
+      </mat-form-field>
+      <div>
+        <p>Fill out the course name</p>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="courseDescribe" errorMessage="Address is required.">
+    <form [formGroup]="courseDescribe">
+      <ng-template matStepLabel>Description</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Describe</mat-label>
+        <input matInput placeholder="Few words about course" formControlName="description"
+               required>
+      </mat-form-field>
+      <div>
+        <p>Go to a different step to see the error state</p>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="submit" class="btn btn-block btn-primary" (click)="updateCourse()">
+        UPDATE COURSE</button>
+    </div>
+  </mat-step>
+</mat-stepper>

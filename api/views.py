@@ -126,6 +126,22 @@ class LectureList(generics.ListAPIView):
     queryset = api_models.Lecture.objects.all()
 
 
+class CourseLecturesList(generics.ListAPIView):
+    """
+    get:
+    Teacher courses list.
+
+    Returns a list of courses with teacher role.
+    """
+
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = api_serializers.LectureSerializer
+
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        return api_models.Lecture.objects.filter(course__pk=course_id)
+
+
 class LectureCreate(generics.CreateAPIView):
     """
     post:

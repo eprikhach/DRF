@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Ticket} from './ticket';
+import {Course} from './ticket';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {
@@ -23,13 +23,52 @@ export class TicketService {
     constructor(private http: HttpClient, public router: Router, public authService: AuthService,) {
     }
 
-    createTicket(ticket: Ticket): Observable<any> {
-        let api = `${this.endpoint}/ticket/create/`
+    createTicket(ticket: Course): Observable<any> {
+        let api = `${this.endpoint}/courses/create/`
         return this.http.post(api, ticket, {headers: this.headers})
             .pipe(catchError(this.authService.handleError))
+        this.router.navigateByUrl('/home')
     }
 
-    createDiv(user: User): void {
-        this.user_list.push(user);
+    getOwnTicket(): Observable<Course[]> {
+        let api = `${this.endpoint}/courses/Teacher/`
+        return this.http.get<Course[]>(api, {headers: this.headers}).pipe(
+            map((res) => {
+                console.log(res)
+                return res || {};
+
+            }), catchError(this.authService.handleError)
+        );
+    }
+
+    getTicket(id: string): Observable<Course> {
+
+        let api = `${this.endpoint}/courses/${id}/`
+        return this.http.get<Course>(api, {headers: this.headers}).pipe(
+            map((res) => {
+                console.log(res)
+                return res || {};
+            }), catchError(this.authService.handleError)
+        );
+    }
+
+    updateCourse(id:string, ticket: Course): Observable<Course> {
+        let api = `${this.endpoint}/courses/${id}/`
+        return this.http.put<Course>(api, ticket, {headers: this.headers}).pipe(
+            map((res) => {
+                console.log(res)
+                return res || {};
+            }), catchError(this.authService.handleError)
+        );
+
+    }
+    deleteCourse(id:string): Observable<Course> {
+        let api = `${this.endpoint}/courses/${id}/`
+        return this.http.delete<Course>(api, {headers: this.headers}).pipe(
+            map((res) => {
+                console.log(res)
+                return res || {};
+            }), catchError(this.authService.handleError)
+        );
     }
 }

@@ -1,8 +1,7 @@
-export class Ticket{
+export class Course{
     id!: string;
-    subject!: string;
-    ticket_status!: string;
-    ticket_author!: string;
+    name!: string;
     description!: string;
-    supports!: string[];
+    teachers!: string[];
+    students!: string[];
 }
